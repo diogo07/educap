@@ -1,21 +1,22 @@
 import 'package:educap/pages/login/login_controller.dart';
+import 'package:educap/pages/register/register_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-class LoginForm extends StatefulWidget {
+class RegisterForm extends StatefulWidget {
   final scaffoldKey;
 
-  LoginForm(this.scaffoldKey);
+  RegisterForm(this.scaffoldKey);
 
   @override
   State<StatefulWidget> createState() {
-    return _LoginFormState();
+    return _RegisterForm();
   }
 }
 
-class _LoginFormState extends State<LoginForm> {
-  final LoginController _loginController = Modular.get<LoginController>();
+class _RegisterForm extends State<RegisterForm> {
+  final _registerController = Modular.get<RegisterController>();
 
   @override
   void initState() {
@@ -25,7 +26,7 @@ class _LoginFormState extends State<LoginForm> {
   @override
   Widget build(BuildContext context) {
     return Form(
-        key: _loginController.formKey,
+        key: _registerController.formKey,
         child: Theme(
           data: new ThemeData(
             primaryColor: Colors.greenAccent,
@@ -34,37 +35,69 @@ class _LoginFormState extends State<LoginForm> {
           child: Column(
             children: <Widget>[
               Observer(
-                builder: (_) =>
-                    _loginController.loading != null && _loginController.loading
-                        ? Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: <Widget>[
-                              Container(
-                                  margin: EdgeInsets.only(bottom: 10.0),
-                                  child: Text(
-                                    'Aguarde',
-                                    style: TextStyle(color: Colors.black26),
-                                  )),
-                              Container(
-                                margin: EdgeInsets.only(bottom: 40.0),
-                                child: CircularProgressIndicator(
-                                  backgroundColor: Colors.black12,
-                                  valueColor: new AlwaysStoppedAnimation<Color>(
-                                      Colors.greenAccent),
-                                ),
-                              )
-                            ],
+                builder: (_) => _registerController.loading != null &&
+                        _registerController.loading
+                    ? Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Container(
+                              margin: EdgeInsets.only(bottom: 10.0),
+                              child: Text(
+                                'Aguarde',
+                                style: TextStyle(color: Colors.black26),
+                              )),
+                          Container(
+                            margin: EdgeInsets.only(bottom: 40.0),
+                            child: CircularProgressIndicator(
+                              backgroundColor: Colors.black12,
+                              valueColor: new AlwaysStoppedAnimation<Color>(
+                                  Colors.greenAccent),
+                            ),
                           )
-                        : Container(),
+                        ],
+                      )
+                    : Container(),
               ),
               Container(
                 width: MediaQuery.of(context).size.width * 0.9,
-                height: 50,
-                padding: EdgeInsets.only(),
+                height: 60,
+                padding: EdgeInsets.only(top: 8.0),
                 child: TextFormField(
                   style: TextStyle(color: Colors.black38),
-                  onChanged: _loginController.setUsername,
+                  onChanged: _registerController.setFirstName,
+                  validator: (value) {
+                    if (value.isEmpty) {
+                      return 'Preencha este campo';
+                    }
+                    return null;
+                  },
+                  decoration: _inputDecoration('Nome'),
+                ),
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width * 0.9,
+                height: 60,
+                padding: EdgeInsets.only(top: 8.0),
+                child: TextFormField(
+                  style: TextStyle(color: Colors.black38),
+                  onChanged: _registerController.setLastName,
+                  validator: (value) {
+                    if (value.isEmpty) {
+                      return 'Preencha este campo';
+                    }
+                    return null;
+                  },
+                  decoration: _inputDecoration('Sobrenome'),
+                ),
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width * 0.9,
+                height: 60,
+                padding: EdgeInsets.only(top: 8.0),
+                child: TextFormField(
+                  style: TextStyle(color: Colors.black38),
+                  onChanged: _registerController.setUsername,
                   validator: (value) {
                     if (value.isEmpty) {
                       return 'Preencha este campo';
@@ -80,7 +113,7 @@ class _LoginFormState extends State<LoginForm> {
                 padding: EdgeInsets.only(top: 8.0),
                 child: TextFormField(
                   style: TextStyle(color: Colors.black38),
-                  onChanged: _loginController.setPassword,
+                  onChanged: _registerController.setPassword,
                   validator: (value) {
                     if (value.isEmpty) {
                       return 'Preencha este campo';
@@ -92,7 +125,7 @@ class _LoginFormState extends State<LoginForm> {
                 ),
               ),
               Observer(
-                builder: (_) => _loginController.errorLogin
+                builder: (_) => _registerController.errorLogin
                     ? Container(
                         margin: EdgeInsets.only(top: 20),
                         alignment: Alignment.center,
@@ -107,29 +140,15 @@ class _LoginFormState extends State<LoginForm> {
                 width: MediaQuery.of(context).size.width * 0.9,
                 child: RaisedButton(
                   child: Text(
-                    "ENTRAR",
+                    "CADASTRAR",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.white,
                     ),
                   ),
                   color: Colors.greenAccent,
-                  onPressed: _loginController.validateLogin,
+                  onPressed: _registerController.saveUser,
                 ),
-              ),
-              Align(
-                alignment: Alignment.center,
-                child: Padding(
-                    padding:
-                        const EdgeInsets.only(top: 2, right: 32, bottom: 25),
-                    child: InkWell(
-                      child: Text('CADASTRE-SE',
-                          style: TextStyle(
-                            color: Colors.black87,
-                            fontSize: 14,
-                          )),
-                      onTap: () => _loginController.showPage('register'),
-                    )),
               ),
             ],
           ),

@@ -1,5 +1,4 @@
-import 'package:educap/components/app_bar.dart';
-import 'package:educap/pages/login/login_controller.dart';
+import 'package:educap/components/app_bar/app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';

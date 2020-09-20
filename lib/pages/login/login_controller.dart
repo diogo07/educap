@@ -31,10 +31,14 @@ abstract class _LoginController with Store {
   bool errorLogin = false;
 
   @observable
+  bool errorRequest = false;
+
+  @observable
   bool obscurePassword = false;
 
   validateLogin() async {
     this.errorLogin = false;
+    this.errorRequest = false;
     if (this.formKey.currentState.validate()) {
       this.loading = true;
       try {
@@ -59,6 +63,10 @@ abstract class _LoginController with Store {
         this.passwordValid = false;
       }
     }
+  }
+
+  showPage(String route) {
+    Modular.to.pushReplacementNamed(route);
   }
 
   @computed

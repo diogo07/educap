@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'login_controller.dart';
+part of 'register_controller.dart';
 
 // **************************************************************************
 // StoreGenerator
@@ -8,23 +8,38 @@ part of 'login_controller.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
-mixin _$LoginController on _LoginController, Store {
-  Computed<bool> _$validateInputUsernameComputed;
+mixin _$RegisterController on _RegisterController, Store {
+  final _$firstNameAtom = Atom(name: '_RegisterController.firstName');
 
   @override
-  bool get validateInputUsername => (_$validateInputUsernameComputed ??=
-          Computed<bool>(() => super.validateInputUsername,
-              name: '_LoginController.validateInputUsername'))
-      .value;
-  Computed<bool> _$validateInputPasswordComputed;
+  String get firstName {
+    _$firstNameAtom.reportRead();
+    return super.firstName;
+  }
 
   @override
-  bool get validateInputPassword => (_$validateInputPasswordComputed ??=
-          Computed<bool>(() => super.validateInputPassword,
-              name: '_LoginController.validateInputPassword'))
-      .value;
+  set firstName(String value) {
+    _$firstNameAtom.reportWrite(value, super.firstName, () {
+      super.firstName = value;
+    });
+  }
 
-  final _$usernameAtom = Atom(name: '_LoginController.username');
+  final _$lastNameAtom = Atom(name: '_RegisterController.lastName');
+
+  @override
+  String get lastName {
+    _$lastNameAtom.reportRead();
+    return super.lastName;
+  }
+
+  @override
+  set lastName(String value) {
+    _$lastNameAtom.reportWrite(value, super.lastName, () {
+      super.lastName = value;
+    });
+  }
+
+  final _$usernameAtom = Atom(name: '_RegisterController.username');
 
   @override
   String get username {
@@ -39,7 +54,7 @@ mixin _$LoginController on _LoginController, Store {
     });
   }
 
-  final _$passwordAtom = Atom(name: '_LoginController.password');
+  final _$passwordAtom = Atom(name: '_RegisterController.password');
 
   @override
   String get password {
@@ -54,7 +69,7 @@ mixin _$LoginController on _LoginController, Store {
     });
   }
 
-  final _$usernameValidAtom = Atom(name: '_LoginController.usernameValid');
+  final _$usernameValidAtom = Atom(name: '_RegisterController.usernameValid');
 
   @override
   bool get usernameValid {
@@ -69,22 +84,7 @@ mixin _$LoginController on _LoginController, Store {
     });
   }
 
-  final _$passwordValidAtom = Atom(name: '_LoginController.passwordValid');
-
-  @override
-  bool get passwordValid {
-    _$passwordValidAtom.reportRead();
-    return super.passwordValid;
-  }
-
-  @override
-  set passwordValid(bool value) {
-    _$passwordValidAtom.reportWrite(value, super.passwordValid, () {
-      super.passwordValid = value;
-    });
-  }
-
-  final _$loadingAtom = Atom(name: '_LoginController.loading');
+  final _$loadingAtom = Atom(name: '_RegisterController.loading');
 
   @override
   bool get loading {
@@ -99,7 +99,7 @@ mixin _$LoginController on _LoginController, Store {
     });
   }
 
-  final _$errorLoginAtom = Atom(name: '_LoginController.errorLogin');
+  final _$errorLoginAtom = Atom(name: '_RegisterController.errorLogin');
 
   @override
   bool get errorLogin {
@@ -114,7 +114,7 @@ mixin _$LoginController on _LoginController, Store {
     });
   }
 
-  final _$errorRequestAtom = Atom(name: '_LoginController.errorRequest');
+  final _$errorRequestAtom = Atom(name: '_RegisterController.errorRequest');
 
   @override
   bool get errorRequest {
@@ -129,7 +129,8 @@ mixin _$LoginController on _LoginController, Store {
     });
   }
 
-  final _$obscurePasswordAtom = Atom(name: '_LoginController.obscurePassword');
+  final _$obscurePasswordAtom =
+      Atom(name: '_RegisterController.obscurePassword');
 
   @override
   bool get obscurePassword {
@@ -144,55 +145,76 @@ mixin _$LoginController on _LoginController, Store {
     });
   }
 
-  final _$_LoginControllerActionController =
-      ActionController(name: '_LoginController');
+  final _$_RegisterControllerActionController =
+      ActionController(name: '_RegisterController');
+
+  @override
+  dynamic setFirstName(String firstName) {
+    final _$actionInfo = _$_RegisterControllerActionController.startAction(
+        name: '_RegisterController.setFirstName');
+    try {
+      return super.setFirstName(firstName);
+    } finally {
+      _$_RegisterControllerActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setLastName(String lastName) {
+    final _$actionInfo = _$_RegisterControllerActionController.startAction(
+        name: '_RegisterController.setLastName');
+    try {
+      return super.setLastName(lastName);
+    } finally {
+      _$_RegisterControllerActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   dynamic setUsername(String username) {
-    final _$actionInfo = _$_LoginControllerActionController.startAction(
-        name: '_LoginController.setUsername');
+    final _$actionInfo = _$_RegisterControllerActionController.startAction(
+        name: '_RegisterController.setUsername');
     try {
       return super.setUsername(username);
     } finally {
-      _$_LoginControllerActionController.endAction(_$actionInfo);
+      _$_RegisterControllerActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   dynamic setPassword(String password) {
-    final _$actionInfo = _$_LoginControllerActionController.startAction(
-        name: '_LoginController.setPassword');
+    final _$actionInfo = _$_RegisterControllerActionController.startAction(
+        name: '_RegisterController.setPassword');
     try {
       return super.setPassword(password);
     } finally {
-      _$_LoginControllerActionController.endAction(_$actionInfo);
+      _$_RegisterControllerActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   dynamic setObscurePassword() {
-    final _$actionInfo = _$_LoginControllerActionController.startAction(
-        name: '_LoginController.setObscurePassword');
+    final _$actionInfo = _$_RegisterControllerActionController.startAction(
+        name: '_RegisterController.setObscurePassword');
     try {
       return super.setObscurePassword();
     } finally {
-      _$_LoginControllerActionController.endAction(_$actionInfo);
+      _$_RegisterControllerActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   String toString() {
     return '''
+firstName: ${firstName},
+lastName: ${lastName},
 username: ${username},
 password: ${password},
 usernameValid: ${usernameValid},
-passwordValid: ${passwordValid},
 loading: ${loading},
 errorLogin: ${errorLogin},
 errorRequest: ${errorRequest},
-obscurePassword: ${obscurePassword},
-validateInputUsername: ${validateInputUsername},
-validateInputPassword: ${validateInputPassword}
+obscurePassword: ${obscurePassword}
     ''';
   }
 }

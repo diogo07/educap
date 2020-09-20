@@ -34,7 +34,7 @@ class _AnalysisScreen extends State<AnalysisScreen> {
                 staggeredTiles: _staggeredTiles,
                 children: [
                   getTile(Colors.indigo, "Universidade", Icons.insert_chart,
-                      'university'),
+                      '/analysis/university'),
                   getTile(Colors.indigo, "Cidade", Icons.location_city, 'city'),
                 ],
                 mainAxisSpacing: 4.0,
