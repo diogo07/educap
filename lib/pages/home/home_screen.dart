@@ -1,3 +1,4 @@
+import 'package:educap/app/app_controller.dart';
 import 'package:educap/components/app_bar/app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -7,6 +8,7 @@ import 'home_controller.dart';
 
 class HomeScreen extends StatelessWidget {
   final _homeController = Modular.get<HomeController>();
+  final _appController = Modular.get<AppController>();
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +20,9 @@ class HomeScreen extends StatelessWidget {
           padding: EdgeInsets.zero,
           children: <Widget>[
             UserAccountsDrawerHeader(
-              accountName: Text(_homeController.loginController.user.first_name,
+              accountName: Text(_appController.getUser().first_name,
                   style: TextStyle(color: Colors.white)),
-              accountEmail: Text(_homeController.loginController.user.username,
+              accountEmail: Text(_appController.getUser().username,
                   style: TextStyle(color: Colors.white)),
             ),
             ListTile(
@@ -43,13 +45,12 @@ class HomeScreen extends StatelessWidget {
                   _homeController.showPage('/settings');
                 }),
             ListTile(
-                title: Text('Sair',
-                    style: TextStyle(
-                        color: Colors.black45, fontWeight: FontWeight.normal)),
-                leading: Icon(Icons.exit_to_app, color: Colors.black38),
-                onTap: () {
-                  _homeController.showPage('/logout');
-                }),
+              title: Text('Sair',
+                  style: TextStyle(
+                      color: Colors.black45, fontWeight: FontWeight.normal)),
+              leading: Icon(Icons.exit_to_app, color: Colors.black38),
+              onTap: () => _homeController.logout(),
+            )
           ],
         ),
       ),

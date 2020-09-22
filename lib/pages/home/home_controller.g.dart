@@ -24,20 +24,6 @@ mixin _$HomeController on _HomeController, Store {
     });
   }
 
-  final _$_HomeControllerActionController =
-      ActionController(name: '_HomeController');
-
-  @override
-  dynamic setProductsLoading(bool value) {
-    final _$actionInfo = _$_HomeControllerActionController.startAction(
-        name: '_HomeController.setProductsLoading');
-    try {
-      return super.setProductsLoading(value);
-    } finally {
-      _$_HomeControllerActionController.endAction(_$actionInfo);
-    }
-  }
-
   @override
   String toString() {
     return '''

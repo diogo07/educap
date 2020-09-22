@@ -43,43 +43,46 @@ class _UniversityAnalyzeSearchScreen
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.0),
                         borderSide: BorderSide(
-                          color: Colors.black12,
+                          color: Colors.black38,
                         ),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.0),
                         borderSide: BorderSide(
-                          color: Colors.greenAccent,
+                          color: Colors.indigo,
                         ),
                       ),
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.0),
                           borderSide: BorderSide(
-                            color: Colors.greenAccent,
+                            color: Colors.indigo,
                           )),
                     ),
                   ),
                   Observer(
                     builder: (_) => _analysisController.loadingSearchUniversity
-                        ? Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: <Widget>[
-                              Container(
-                                  margin: EdgeInsets.only(bottom: 10.0),
-                                  child: Text(
-                                    'Pesquisando',
-                                    style: TextStyle(color: Colors.black26),
-                                  )),
-                              Container(
-                                margin: EdgeInsets.only(bottom: 40.0),
-                                child: CircularProgressIndicator(
-                                  backgroundColor: Colors.black12,
-                                  valueColor: new AlwaysStoppedAnimation<Color>(
-                                      Colors.greenAccent),
-                                ),
-                              )
-                            ],
+                        ? Expanded(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: <Widget>[
+                                Container(
+                                    margin: EdgeInsets.only(bottom: 10.0),
+                                    child: Text(
+                                      'Pesquisando',
+                                      style: TextStyle(color: Colors.black38),
+                                    )),
+                                Container(
+                                  margin: EdgeInsets.only(bottom: 40.0),
+                                  child: CircularProgressIndicator(
+                                    backgroundColor: Colors.black26,
+                                    valueColor:
+                                        new AlwaysStoppedAnimation<Color>(
+                                            Colors.greenAccent),
+                                  ),
+                                )
+                              ],
+                            ),
                           )
                         : Container(),
                   ),
@@ -110,25 +113,25 @@ class _UniversityAnalyzeSearchScreen
       leading: Container(
         child: Icon(
           Icons.location_city,
-          color: Colors.black38,
+          color: Colors.black45,
           size: 25,
         ),
       ),
       title: Text(university.name,
-          style: TextStyle(color: Colors.black38, fontSize: 11.0)),
+          style: TextStyle(color: Colors.black45, fontSize: 14.0)),
       subtitle: Row(
         children: <Widget>[
           Expanded(
             flex: 4,
             child: Padding(
                 padding: EdgeInsets.only(top: 5.0),
-                child: Text(university.city.name,
-                    style: TextStyle(color: Colors.black45, fontSize: 11.0))),
+                child: Text('${university.city.name} - ${university.city.uf}',
+                    style: TextStyle(color: Colors.black54, fontSize: 14.0))),
           )
         ],
       ),
       trailing:
-          Icon(Icons.keyboard_arrow_right, color: Colors.black38, size: 25.0),
+          Icon(Icons.keyboard_arrow_right, color: Colors.black54, size: 25.0),
       onTap: () => _analysisController.showPage('/university/${university.id}'),
     );
   }

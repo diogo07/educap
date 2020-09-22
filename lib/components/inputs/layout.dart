@@ -6,14 +6,14 @@ InputDecoration getInputDecoratorLogin(BuildContext context, String texto) {
     labelText: texto,
     enabledBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(10.0),
-      borderSide: BorderSide(color: Color(0xFF4CAF50)),
+      borderSide: BorderSide(color: Colors.indigo),
     ),
     focusedBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(10.0),
-      borderSide: BorderSide(color: Color(0xFF4CAF50)),
+      borderSide: BorderSide(color: Colors.indigo),
     ),
     border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10.0),
-        borderSide: BorderSide(color: Color(0xFF4CAF50))),
+        borderSide: BorderSide(color: Colors.indigo)),
   );
 }

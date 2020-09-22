@@ -6,7 +6,7 @@ class AppWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        primaryColor: Colors.greenAccent,
+        primaryColor: Colors.indigo,
         primaryColorDark: Colors.black12,
       ),
       debugShowCheckedModeBanner: false,

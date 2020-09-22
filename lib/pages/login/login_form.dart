@@ -28,7 +28,7 @@ class _LoginFormState extends State<LoginForm> {
         key: _loginController.formKey,
         child: Theme(
           data: new ThemeData(
-            primaryColor: Colors.greenAccent,
+            primaryColor: Colors.indigo,
             primaryColorDark: Colors.black12,
           ),
           child: Column(
@@ -51,7 +51,7 @@ class _LoginFormState extends State<LoginForm> {
                                 child: CircularProgressIndicator(
                                   backgroundColor: Colors.black12,
                                   valueColor: new AlwaysStoppedAnimation<Color>(
-                                      Colors.greenAccent),
+                                      Colors.indigo),
                                 ),
                               )
                             ],
@@ -60,14 +60,13 @@ class _LoginFormState extends State<LoginForm> {
               ),
               Container(
                 width: MediaQuery.of(context).size.width * 0.9,
-                height: 50,
                 padding: EdgeInsets.only(),
                 child: TextFormField(
                   style: TextStyle(color: Colors.black38),
                   onChanged: _loginController.setUsername,
                   validator: (value) {
                     if (value.isEmpty) {
-                      return 'Preencha este campo';
+                      return 'Digite seu login';
                     }
                     return null;
                   },
@@ -76,14 +75,13 @@ class _LoginFormState extends State<LoginForm> {
               ),
               Container(
                 width: MediaQuery.of(context).size.width * 0.9,
-                height: 60,
                 padding: EdgeInsets.only(top: 8.0),
                 child: TextFormField(
                   style: TextStyle(color: Colors.black38),
                   onChanged: _loginController.setPassword,
                   validator: (value) {
                     if (value.isEmpty) {
-                      return 'Preencha este campo';
+                      return 'Digite sua senha';
                     }
                     return null;
                   },
@@ -113,20 +111,19 @@ class _LoginFormState extends State<LoginForm> {
                       color: Colors.white,
                     ),
                   ),
-                  color: Colors.greenAccent,
+                  color: Colors.indigo,
                   onPressed: _loginController.validateLogin,
                 ),
               ),
               Align(
                 alignment: Alignment.center,
                 child: Padding(
-                    padding:
-                        const EdgeInsets.only(top: 2, right: 32, bottom: 25),
+                    padding: const EdgeInsets.only(top: 2, bottom: 25),
                     child: InkWell(
-                      child: Text('CADASTRE-SE',
+                      child: Text('Cadastre-se',
                           style: TextStyle(
                             color: Colors.black87,
-                            fontSize: 14,
+                            fontSize: 16,
                           )),
                       onTap: () => _loginController.showPage('register'),
                     )),
@@ -149,13 +146,13 @@ class _LoginFormState extends State<LoginForm> {
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10.0),
         borderSide: BorderSide(
-          color: Colors.greenAccent,
+          color: Colors.indigo,
         ),
       ),
       border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10.0),
           borderSide: BorderSide(
-            color: Colors.greenAccent,
+            color: Colors.indigo,
           )),
     );
   }

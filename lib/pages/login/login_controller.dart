@@ -1,3 +1,4 @@
+import 'package:educap/app/app_controller.dart';
 import 'package:educap/models/user.dart';
 import 'package:educap/repository/user_repository.dart';
 import 'package:flutter/material.dart';
@@ -9,8 +10,10 @@ class LoginController = _LoginController with _$LoginController;
 
 abstract class _LoginController with Store {
   UserRepository userRepository = UserRepository();
-  User user = User.empty();
+  AppController appController = Modular.get<AppController>();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
+  String error = '';
 
   @observable
   String username;
@@ -42,15 +45,12 @@ abstract class _LoginController with Store {
     if (this.formKey.currentState.validate()) {
       this.loading = true;
       try {
-        user = await userRepository.login(this.username, this.password);
-        if (user != null) {
-          this.loading = false;
-          Modular.to.pushReplacementNamed('/home');
-        } else {
-          this.loading = false;
-          this.errorLogin = true;
-        }
-      } on Exception catch (_) {
+        User user = await userRepository.login(this.username, this.password);
+        this.appController.setUser(user);
+        this.loading = false;
+        Modular.to.pushReplacementNamed('/home');
+      } on Exception catch (error) {
+        this.error = error.toString();
         this.loading = false;
         this.errorLogin = true;
       }

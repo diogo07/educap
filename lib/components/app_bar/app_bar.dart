@@ -4,7 +4,7 @@ import 'package:progress_dialog/progress_dialog.dart';
 
 ThemeData getTheme(BuildContext context) {
   return ThemeData(
-      primaryColor: Colors.greenAccent,
+      primaryColor: Colors.indigo,
       accentColor: Colors.black12,
       buttonTheme: ButtonThemeData(
           padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
@@ -31,7 +31,7 @@ Widget getAppBar(String texto) {
       textAlign: TextAlign.start,
     ),
     iconTheme: new IconThemeData(color: Colors.white),
-    backgroundColor: Colors.greenAccent,
+    backgroundColor: Colors.indigo,
   );
 }
 

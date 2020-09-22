@@ -193,6 +193,17 @@ mixin _$RegisterController on _RegisterController, Store {
   }
 
   @override
+  dynamic setUsernameValid(bool value) {
+    final _$actionInfo = _$_RegisterControllerActionController.startAction(
+        name: '_RegisterController.setUsernameValid');
+    try {
+      return super.setUsernameValid(value);
+    } finally {
+      _$_RegisterControllerActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   dynamic setObscurePassword() {
     final _$actionInfo = _$_RegisterControllerActionController.startAction(
         name: '_RegisterController.setObscurePassword');

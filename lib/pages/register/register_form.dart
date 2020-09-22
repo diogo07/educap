@@ -29,7 +29,7 @@ class _RegisterForm extends State<RegisterForm> {
         key: _registerController.formKey,
         child: Theme(
           data: new ThemeData(
-            primaryColor: Colors.greenAccent,
+            primaryColor: Colors.indigo,
             primaryColorDark: Colors.black12,
           ),
           child: Column(
@@ -52,7 +52,7 @@ class _RegisterForm extends State<RegisterForm> {
                             child: CircularProgressIndicator(
                               backgroundColor: Colors.black12,
                               valueColor: new AlwaysStoppedAnimation<Color>(
-                                  Colors.greenAccent),
+                                  Colors.indigo),
                             ),
                           )
                         ],
@@ -61,7 +61,6 @@ class _RegisterForm extends State<RegisterForm> {
               ),
               Container(
                 width: MediaQuery.of(context).size.width * 0.9,
-                height: 60,
                 padding: EdgeInsets.only(top: 8.0),
                 child: TextFormField(
                   style: TextStyle(color: Colors.black38),
@@ -77,7 +76,6 @@ class _RegisterForm extends State<RegisterForm> {
               ),
               Container(
                 width: MediaQuery.of(context).size.width * 0.9,
-                height: 60,
                 padding: EdgeInsets.only(top: 8.0),
                 child: TextFormField(
                   style: TextStyle(color: Colors.black38),
@@ -91,25 +89,25 @@ class _RegisterForm extends State<RegisterForm> {
                   decoration: _inputDecoration('Sobrenome'),
                 ),
               ),
-              Container(
-                width: MediaQuery.of(context).size.width * 0.9,
-                height: 60,
-                padding: EdgeInsets.only(top: 8.0),
-                child: TextFormField(
-                  style: TextStyle(color: Colors.black38),
-                  onChanged: _registerController.setUsername,
-                  validator: (value) {
-                    if (value.isEmpty) {
-                      return 'Preencha este campo';
-                    }
-                    return null;
-                  },
-                  decoration: _inputDecoration('Login'),
+              Observer(
+                builder: (_) => Container(
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  padding: EdgeInsets.only(top: 8.0),
+                  child: TextFormField(
+                    style: TextStyle(color: Colors.black38),
+                    onChanged: _registerController.setUsername,
+                    validator: (value) {
+                      if (value.isEmpty || !_registerController.usernameValid) {
+                        return 'Login inválido';
+                      }
+                      return null;
+                    },
+                    decoration: _inputDecoration('Login'),
+                  ),
                 ),
               ),
               Container(
                 width: MediaQuery.of(context).size.width * 0.9,
-                height: 60,
                 padding: EdgeInsets.only(top: 8.0),
                 child: TextFormField(
                   style: TextStyle(color: Colors.black38),
@@ -146,8 +144,8 @@ class _RegisterForm extends State<RegisterForm> {
                       color: Colors.white,
                     ),
                   ),
-                  color: Colors.greenAccent,
-                  onPressed: _registerController.saveUser,
+                  color: Colors.indigo,
+                  onPressed: () => _registerController.saveUser(context),
                 ),
               ),
             ],
@@ -168,13 +166,13 @@ class _RegisterForm extends State<RegisterForm> {
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10.0),
         borderSide: BorderSide(
-          color: Colors.greenAccent,
+          color: Colors.indigo,
         ),
       ),
       border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10.0),
           borderSide: BorderSide(
-            color: Colors.greenAccent,
+            color: Colors.indigo,
           )),
     );
   }

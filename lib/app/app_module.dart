@@ -1,3 +1,4 @@
+import 'package:educap/app/app_controller.dart';
 import 'package:educap/pages/analysis/analysis_controller.dart';
 import 'package:educap/pages/analysis/analysis_screen.dart';
 import 'package:educap/pages/home/home_controller.dart';
@@ -17,6 +18,7 @@ import 'app_widget.dart';
 class AppModule extends MainModule {
   @override
   List<Bind> get binds => [
+        Bind((i) => AppController()),
         Bind((i) => HomeController()),
         Bind((i) => LoginController()),
         Bind((i) => RegisterController()),

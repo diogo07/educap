@@ -24,7 +24,7 @@ class LoginScreen extends StatelessWidget {
                     child: Text(
                       'educap',
                       style: TextStyle(
-                          color: Colors.greenAccent,
+                          color: Colors.indigo,
                           fontFamily: 'Assistant Bold',
                           fontSize: 40.0),
                     ),
