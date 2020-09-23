@@ -3,7 +3,6 @@ import 'package:educap/pages/analysis/analysis_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class UniversityAnalyzeSearchScreen extends StatefulWidget {
   _UniversityAnalyzeSearchScreen createState() =>
@@ -27,7 +26,7 @@ class _UniversityAnalyzeSearchScreen
         ),
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () => _analysisController.showPage('/analysis'),
+          onPressed: () => _analysisController.showPage('/analysis/university'),
         ),
       ),
       body: Scaffold(
@@ -78,7 +77,7 @@ class _UniversityAnalyzeSearchScreen
                                     backgroundColor: Colors.black26,
                                     valueColor:
                                         new AlwaysStoppedAnimation<Color>(
-                                            Colors.greenAccent),
+                                            Colors.indigo),
                                   ),
                                 )
                               ],
@@ -132,7 +131,8 @@ class _UniversityAnalyzeSearchScreen
       ),
       trailing:
           Icon(Icons.keyboard_arrow_right, color: Colors.black54, size: 25.0),
-      onTap: () => _analysisController.showPage('/university/${university.id}'),
+      onTap: () => _analysisController.routeToUniversity(
+          '/analysis/university/view', university),
     );
   }
 }

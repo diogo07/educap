@@ -1,4 +1,6 @@
 import 'package:educap/app/app_controller.dart';
+import 'package:educap/pages/analisy_enade/analyze_enade_controller.dart';
+import 'package:educap/pages/analisy_enade/analyze_enade_screen.dart';
 import 'package:educap/pages/analysis/analysis_controller.dart';
 import 'package:educap/pages/analysis/analysis_screen.dart';
 import 'package:educap/pages/home/home_controller.dart';
@@ -23,6 +25,7 @@ class AppModule extends MainModule {
         Bind((i) => LoginController()),
         Bind((i) => RegisterController()),
         Bind((i) => AnalysisController()),
+        Bind((i) => AnalyzeEnadeController()),
         Bind((i) => DioService()),
       ];
 
@@ -35,6 +38,8 @@ class AppModule extends MainModule {
         Router("/analysis", child: (_, args) => AnalysisScreen()),
         Router("/analysis/university",
             child: (_, args) => UniversityAnalyzeSearchScreen()),
+        Router("/analysis/university/view",
+            child: (_, args) => AnalyzeEnadeScreen()),
       ];
 
   @override
