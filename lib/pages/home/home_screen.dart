@@ -61,9 +61,9 @@ class HomeScreen extends StatelessWidget {
                 crossAxisCount: 4,
                 staggeredTiles: _staggeredTiles,
                 children: [
-                  getTile(Colors.indigo, "Análises", Icons.insert_chart,
+                  getTile(Colors.red[300], "Análises", Icons.insert_chart,
                       'analysis'),
-                  getTile(Colors.indigo, "Sobre", Icons.help, 'about'),
+                  getTile(Colors.red[300], "Sobre", Icons.help, 'about'),
                 ],
                 mainAxisSpacing: 4.0,
                 crossAxisSpacing: 4.0,

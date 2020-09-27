@@ -13,7 +13,6 @@ class EnadeRepository {
     if (response.statusCode != 200) {
       throw Exception();
     } else {
-      print(response.data);
       return Enade.toList(response.data);
     }
   }

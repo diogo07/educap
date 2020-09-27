@@ -29,6 +29,7 @@ abstract class _AnalyzeEnadeController with Store {
     try {
       this.listEnades =
           await enadeRepository.filterByUniversity(Constants.university);
+      this.loadingSearchQuestions = false;
     } on Exception catch (error) {}
   }
 

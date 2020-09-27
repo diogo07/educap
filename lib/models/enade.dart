@@ -1,5 +1,4 @@
 import 'package:educap/models/curso.dart';
-import 'package:educap/pages/analisy_enade/analyze_enade_controller.dart';
 
 class Enade {
   int id;
@@ -9,6 +8,7 @@ class Enade {
   int yearConclusionEducationMedicalStudent;
   int yearStartGraduationStudent;
   Course course;
+  int sales;
 
   Enade(
       this.id,
@@ -18,20 +18,23 @@ class Enade {
       this.yearConclusionEducationMedicalStudent,
       this.yearStartGraduationStudent,
       this.course);
+
+  Enade.custom(this.year, this.sales);
   Enade.empty();
 
   factory Enade.fromMap(Map json) {
-    return Enade(
-        json['id'],
-        json['ano_enade'],
-        json['idade'],
-        json['sexo'],
-        json['ano_conc_ens_medio'],
-        json['ano_inic_grad'],
-        Course.fromMap(json['id_curso']));
+    print(json['ano_enade']);
+    return Enade.custom(
+      json['ano_enade'],
+      json['total'],
+    );
   }
 
   static List<Enade> toList(List list) {
-    return list.map((e) => Enade.fromMap(e)).toList();
+    List<Enade> listEnade = List<Enade>();
+    list.forEach((item) {
+      listEnade.add(Enade.custom(item['enade_ano'], item['total']));
+    });
+    return listEnade;
   }
 }
