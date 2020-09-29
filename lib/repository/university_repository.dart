@@ -1,3 +1,4 @@
+import 'package:educap/models/course.dart';
 import 'package:educap/models/university.dart';
 import 'package:educap/repository/dio/dio_service.dart';
 
@@ -12,6 +13,15 @@ class UniversityRepository {
       throw Exception();
     } else {
       return University.toList(response.data);
+    }
+  }
+
+  Future<List<Course>> getCoursesOfUniversity(int id) async {
+    var response = await _dio.service.get("universidade/${id}/cursos");
+    if (response.statusCode != 200) {
+      throw Exception();
+    } else {
+      return Course.toList(response.data);
     }
   }
 }

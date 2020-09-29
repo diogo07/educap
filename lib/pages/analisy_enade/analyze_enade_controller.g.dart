@@ -24,50 +24,87 @@ mixin _$AnalyzeEnadeController on _AnalyzeEnadeController, Store {
     });
   }
 
-  final _$loadingSearchQuestionsAtom =
-      Atom(name: '_AnalyzeEnadeController.loadingSearchQuestions');
+  final _$listCoursesAtom = Atom(name: '_AnalyzeEnadeController.listCourses');
 
   @override
-  bool get loadingSearchQuestions {
-    _$loadingSearchQuestionsAtom.reportRead();
-    return super.loadingSearchQuestions;
+  List<Course> get listCourses {
+    _$listCoursesAtom.reportRead();
+    return super.listCourses;
   }
 
   @override
-  set loadingSearchQuestions(bool value) {
-    _$loadingSearchQuestionsAtom
-        .reportWrite(value, super.loadingSearchQuestions, () {
-      super.loadingSearchQuestions = value;
+  set listCourses(List<Course> value) {
+    _$listCoursesAtom.reportWrite(value, super.listCourses, () {
+      super.listCourses = value;
     });
   }
 
-  final _$searchQuestionsAsyncAction =
-      AsyncAction('_AnalyzeEnadeController.searchQuestions');
+  final _$loadingDataEnadeAtom =
+      Atom(name: '_AnalyzeEnadeController.loadingDataEnade');
 
   @override
-  Future searchQuestions() {
-    return _$searchQuestionsAsyncAction.run(() => super.searchQuestions());
+  bool get loadingDataEnade {
+    _$loadingDataEnadeAtom.reportRead();
+    return super.loadingDataEnade;
   }
 
-  final _$_AnalyzeEnadeControllerActionController =
-      ActionController(name: '_AnalyzeEnadeController');
+  @override
+  set loadingDataEnade(bool value) {
+    _$loadingDataEnadeAtom.reportWrite(value, super.loadingDataEnade, () {
+      super.loadingDataEnade = value;
+    });
+  }
+
+  final _$loadingCoursesAtom =
+      Atom(name: '_AnalyzeEnadeController.loadingCourses');
 
   @override
-  dynamic setListEnades(List<Enade> list) {
-    final _$actionInfo = _$_AnalyzeEnadeControllerActionController.startAction(
-        name: '_AnalyzeEnadeController.setListEnades');
-    try {
-      return super.setListEnades(list);
-    } finally {
-      _$_AnalyzeEnadeControllerActionController.endAction(_$actionInfo);
-    }
+  bool get loadingCourses {
+    _$loadingCoursesAtom.reportRead();
+    return super.loadingCourses;
+  }
+
+  @override
+  set loadingCourses(bool value) {
+    _$loadingCoursesAtom.reportWrite(value, super.loadingCourses, () {
+      super.loadingCourses = value;
+    });
+  }
+
+  final _$searchDataEnadeFromUniversityAsyncAction =
+      AsyncAction('_AnalyzeEnadeController.searchDataEnadeFromUniversity');
+
+  @override
+  Future searchDataEnadeFromUniversity() {
+    return _$searchDataEnadeFromUniversityAsyncAction
+        .run(() => super.searchDataEnadeFromUniversity());
+  }
+
+  final _$setCourseSelectedAsyncAction =
+      AsyncAction('_AnalyzeEnadeController.setCourseSelected');
+
+  @override
+  Future setCourseSelected(Course course) {
+    return _$setCourseSelectedAsyncAction
+        .run(() => super.setCourseSelected(course));
+  }
+
+  final _$searchCoursesFromUniversityAsyncAction =
+      AsyncAction('_AnalyzeEnadeController.searchCoursesFromUniversity');
+
+  @override
+  Future searchCoursesFromUniversity() {
+    return _$searchCoursesFromUniversityAsyncAction
+        .run(() => super.searchCoursesFromUniversity());
   }
 
   @override
   String toString() {
     return '''
 listEnades: ${listEnades},
-loadingSearchQuestions: ${loadingSearchQuestions}
+listCourses: ${listCourses},
+loadingDataEnade: ${loadingDataEnade},
+loadingCourses: ${loadingCourses}
     ''';
   }
 }

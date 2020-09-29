@@ -1,4 +1,5 @@
 import 'package:educap/components/charts/column_chart.dart';
+import 'package:educap/models/course.dart';
 import 'package:educap/pages/analisy_enade/analyze_enade_controller.dart';
 import 'package:educap/utils/constants.dart';
 import 'package:flutter/material.dart';
@@ -11,12 +12,12 @@ class AnalyzeEnadeScreen extends StatefulWidget {
 
 class _AnalyzeEnadeScreen extends State<AnalyzeEnadeScreen> {
   final _analyzeEnadeController = Modular.get<AnalyzeEnadeController>();
-  String dropdownValue = 'Todos os cursos';
+  String dropdownValue = 'One';
 
   @override
   void initState() {
-    super.initState();
-    this._analyzeEnadeController.searchQuestions();
+    this._analyzeEnadeController.searchDataEnadeFromUniversity();
+    this._analyzeEnadeController.searchCoursesFromUniversity();
   }
 
   @override
@@ -39,87 +40,88 @@ class _AnalyzeEnadeScreen extends State<AnalyzeEnadeScreen> {
             child: Padding(
               padding: EdgeInsets.all(20),
               child: ListView(shrinkWrap: true, children: <Widget>[
-                Column(children: [
-                  Padding(
-                    padding: EdgeInsets.only(top: 20, bottom: 20),
-                    child: Text(
-                      Constants.university.name,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: Colors.black54,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16),
+                Container(
+                  height: MediaQuery.of(context).size.height * 0.9,
+                  child: Column(children: [
+                    Padding(
+                      padding: EdgeInsets.only(top: 20, bottom: 20),
+                      child: Text(
+                        Constants.university.name,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Colors.black54,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16),
+                      ),
                     ),
-                  ),
-                  Observer(
-                      builder: (_) => _analyzeEnadeController
-                              .loadingSearchQuestions
-                          ? Expanded(
-                              child: Center(
-                                child: CircularProgressIndicator(
-                                  backgroundColor: Colors.black12,
-                                  valueColor: new AlwaysStoppedAnimation<Color>(
-                                      Colors.indigo),
-                                ),
-                              ),
-                            )
-                          : Column(
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.only(top: 20, bottom: 20),
-                                  child: Text(
-                                    'Quantidade de alunos que realizaram o Enade por ano',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        color: Colors.black45, fontSize: 14),
+                    Observer(
+                        builder: (_) => _analyzeEnadeController
+                                    .loadingDataEnade ||
+                                _analyzeEnadeController.loadingCourses
+                            ? Expanded(
+                                child: Center(
+                                  child: CircularProgressIndicator(
+                                    backgroundColor: Colors.black12,
+                                    valueColor:
+                                        new AlwaysStoppedAnimation<Color>(
+                                            Colors.indigo),
                                   ),
                                 ),
-                                Padding(
-                                  padding: EdgeInsets.only(right: 20),
-                                  child: Row(
-                                    crossAxisAlignment: CrossAxisAlignment.end,
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                      DropdownButton<String>(
-                                        value: dropdownValue,
-                                        icon: Icon(Icons.arrow_drop_down,
-                                            color: Colors.black26),
-                                        iconSize: 24,
-                                        elevation: 16,
-                                        style: TextStyle(color: Colors.black38),
-                                        underline: Container(
-                                          height: 2,
-                                          color: Colors.white,
-                                        ),
-                                        onChanged: (String newValue) {
-                                          setState(() {
-                                            dropdownValue = newValue;
-                                          });
-                                        },
-                                        items: <String>[
-                                          'Todos os cursos',
-                                          'Sistemas de Informação',
-                                          'Ciências Econômicas'
-                                        ].map<DropdownMenuItem<String>>(
-                                            (String value) {
-                                          return DropdownMenuItem<String>(
-                                            value: value,
-                                            child: Text(value),
-                                          );
-                                        }).toList(),
-                                      ),
-                                    ],
+                              )
+                            : Column(
+                                children: [
+                                  Padding(
+                                    padding:
+                                        EdgeInsets.only(top: 20, bottom: 20),
+                                    child: Text(
+                                      'Quantidade de alunos que realizaram o Enade por ano',
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          color: Colors.black45, fontSize: 14),
+                                    ),
                                   ),
-                                ),
-                                Container(
-                                  width: MediaQuery.of(context).size.width,
-                                  height: 400,
-                                  child: ColumnChart(
-                                      _analyzeEnadeController.listEnades),
-                                )
-                              ],
-                            ))
-                ])
+                                  Padding(
+                                    padding: EdgeInsets.only(right: 20),
+                                    child: Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.end,
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        DropdownButton<Course>(
+                                          value: _analyzeEnadeController
+                                              .courseSelected,
+                                          icon: Icon(Icons.arrow_drop_down),
+                                          iconSize: 24,
+                                          elevation: 16,
+                                          style:
+                                              TextStyle(color: Colors.black45),
+                                          underline: Container(
+                                              height: 2,
+                                              color: Colors.transparent),
+                                          onChanged: (Course course) {
+                                            setState(() {
+                                              // _analyzeEnadeController
+                                              //     .courseSelected = course;
+                                              _analyzeEnadeController
+                                                  .setCourseSelected(course);
+                                            });
+                                          },
+                                          items: _analyzeEnadeController
+                                              .getItensDropdownMenu(),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  Container(
+                                    width: MediaQuery.of(context).size.width,
+                                    height: 400,
+                                    child: ColumnChart(
+                                        _analyzeEnadeController.listEnades),
+                                  )
+                                ],
+                              ))
+                  ]),
+                )
               ]),
             )));
   }
@@ -174,11 +176,4 @@ class EntryItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return _buildTiles(entry);
   }
-}
-
-class ListItem {
-  int value;
-  String name;
-
-  ListItem(this.value, this.name);
 }

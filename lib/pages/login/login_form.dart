@@ -111,7 +111,7 @@ class _LoginFormState extends State<LoginForm> {
                       color: Colors.white,
                     ),
                   ),
-                  color: Colors.red[300],
+                  color: Colors.red[400],
                   onPressed: _loginController.validateLogin,
                 ),
               ),

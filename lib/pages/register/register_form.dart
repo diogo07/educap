@@ -144,7 +144,7 @@ class _RegisterForm extends State<RegisterForm> {
                       color: Colors.white,
                     ),
                   ),
-                  color: Colors.red[300],
+                  color: Colors.red[400],
                   onPressed: () => _registerController.saveUser(context),
                 ),
               ),

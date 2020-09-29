@@ -1,4 +1,4 @@
-import 'package:educap/models/curso.dart';
+import 'package:educap/models/course.dart';
 
 class Enade {
   int id;
@@ -23,7 +23,6 @@ class Enade {
   Enade.empty();
 
   factory Enade.fromMap(Map json) {
-    print(json['ano_enade']);
     return Enade.custom(
       json['ano_enade'],
       json['total'],

@@ -1,8 +1,10 @@
+import 'package:educap/models/course.dart';
 import 'package:educap/models/enade.dart';
-import 'package:educap/models/university.dart';
 import 'package:educap/repository/dio/dio_service.dart';
 import 'package:educap/repository/enade_repository.dart';
+import 'package:educap/repository/university_repository.dart';
 import 'package:educap/utils/constants.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import "package:mobx/mobx.dart";
 part 'analyze_enade_controller.g.dart';
@@ -12,29 +14,71 @@ class AnalyzeEnadeController = _AnalyzeEnadeController
 
 abstract class _AnalyzeEnadeController with Store {
   EnadeRepository enadeRepository = EnadeRepository(Modular.get<DioService>());
+  UniversityRepository universityRepository =
+      UniversityRepository(Modular.get<DioService>());
+  Course courseSelected = Course.lazy(0, "0", 0, 0);
 
   @observable
   List<Enade> listEnades = List<Enade>();
 
   @observable
-  bool loadingSearchQuestions = true;
+  List<Course> listCourses = List<Course>();
+
+  @observable
+  bool loadingDataEnade = true;
+
+  @observable
+  bool loadingCourses = true;
 
   void showPage(String route) {
     Modular.to.pushReplacementNamed(route);
   }
 
   @action
-  searchQuestions() async {
-    this.loadingSearchQuestions = true;
+  searchDataEnadeFromUniversity() async {
+    this.loadingDataEnade = true;
     try {
       this.listEnades =
           await enadeRepository.filterByUniversity(Constants.university);
-      this.loadingSearchQuestions = false;
+      this.loadingDataEnade = false;
     } on Exception catch (error) {}
   }
 
   @action
-  setListEnades(List<Enade> list) {
-    this.listEnades = list;
+  setCourseSelected(Course course) async {
+    this.courseSelected = course;
+    if (course.group == 0) {
+      this.searchDataEnadeFromUniversity();
+    } else {
+      this.loadingDataEnade = true;
+      try {
+        this.listEnades = await enadeRepository.filterByUniversityAndCourse(
+            Constants.university, course);
+        this.loadingDataEnade = false;
+      } on Exception catch (error) {}
+    }
+  }
+
+  @action
+  searchCoursesFromUniversity() async {
+    this.loadingCourses = true;
+    try {
+      this.listCourses = await universityRepository
+          .getCoursesOfUniversity(Constants.university.id);
+      this.listCourses.insert(0, Course.lazy(0, "", 0, 0));
+      this.courseSelected = listCourses[0];
+      this.loadingCourses = false;
+    } on Exception catch (error) {}
+  }
+
+  List<DropdownMenuItem<Course>> getItensDropdownMenu() {
+    List<DropdownMenuItem<Course>> list = List<DropdownMenuItem<Course>>();
+    this.listCourses.forEach((course) {
+      list.add(DropdownMenuItem<Course>(
+        value: course,
+        child: Text(Constants.getCourseByGroup(course.group)),
+      ));
+    });
+    return list;
   }
 }
