@@ -7,6 +7,8 @@ import 'package:educap/pages/home/home_controller.dart';
 import 'package:educap/pages/home/home_screen.dart';
 import 'package:educap/pages/login/login_controller.dart';
 import 'package:educap/pages/login/login_screen.dart';
+import 'package:educap/pages/questions/questions_controller.dart';
+import 'package:educap/pages/questions/questions_screen.dart';
 import 'package:educap/pages/register/register_controller.dart';
 import 'package:educap/pages/register/register_screen.dart';
 import 'package:educap/pages/splash/splash_screen.dart';
@@ -26,6 +28,7 @@ class AppModule extends MainModule {
         Bind((i) => RegisterController()),
         Bind((i) => AnalysisController()),
         Bind((i) => AnalyzeEnadeController()),
+        Bind((i) => QuestionsController()),
         Bind((i) => DioService()),
       ];
 
@@ -35,11 +38,12 @@ class AppModule extends MainModule {
         Router("/login", child: (_, args) => LoginScreen()),
         Router("/register", child: (_, args) => RegisterScreen()),
         Router("/home", child: (_, args) => HomeScreen()),
-        Router("/analysis", child: (_, args) => AnalysisScreen()),
-        Router("/analysis/university",
+        Router("/analysis",
             child: (_, args) => UniversityAnalyzeSearchScreen()),
-        Router("/analysis/university/view",
+        Router("/analysis/university",
             child: (_, args) => AnalyzeEnadeScreen()),
+        Router("/analysis/university/questions",
+            child: (_, args) => QuestionsEnadeScreen()),
       ];
 
   @override

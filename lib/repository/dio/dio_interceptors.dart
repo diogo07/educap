@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
-import 'package:educap/utils/constants.dart';
+import 'package:educap/helpers/constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class DioInterceptors extends InterceptorsWrapper {

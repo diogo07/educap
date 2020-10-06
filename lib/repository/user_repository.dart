@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:educap/models/user.dart';
-import 'package:educap/utils/constants.dart';
+import 'package:educap/helpers/constants.dart';
 
 class UserRepository {
   final Dio _dio = Dio();

@@ -1,7 +1,7 @@
 import 'package:educap/components/charts/column_chart.dart';
 import 'package:educap/models/course.dart';
 import 'package:educap/pages/analisy_enade/analyze_enade_controller.dart';
-import 'package:educap/utils/constants.dart';
+import 'package:educap/helpers/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -12,7 +12,6 @@ class AnalyzeEnadeScreen extends StatefulWidget {
 
 class _AnalyzeEnadeScreen extends State<AnalyzeEnadeScreen> {
   final _analyzeEnadeController = Modular.get<AnalyzeEnadeController>();
-  String dropdownValue = 'One';
 
   @override
   void initState() {
@@ -30,8 +29,7 @@ class _AnalyzeEnadeScreen extends State<AnalyzeEnadeScreen> {
           ),
           leading: IconButton(
             icon: Icon(Icons.arrow_back, color: Colors.white),
-            onPressed: () =>
-                _analyzeEnadeController.showPage('/analysis/university'),
+            onPressed: () => _analyzeEnadeController.showPage('/analysis'),
           ),
         ),
         body: Container(

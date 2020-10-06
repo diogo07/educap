@@ -26,7 +26,7 @@ class _UniversityAnalyzeSearchScreen
         ),
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () => _analysisController.showPage('/analysis/university'),
+          onPressed: () => _analysisController.showPage('/home'),
         ),
       ),
       body: Scaffold(
@@ -34,6 +34,13 @@ class _UniversityAnalyzeSearchScreen
               padding: const EdgeInsets.all(20.0),
               child: Column(
                 children: [
+                  Padding(
+                    padding: EdgeInsets.only(top: 15, bottom: 25),
+                    child: Text(
+                        'Pesquise e selecione a universidade que você deseja visualizar os dados do Enade',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: Colors.black87)),
+                  ),
                   TextField(
                     onChanged: _analysisController.setFilterUniversity,
                     decoration: InputDecoration(
@@ -132,7 +139,7 @@ class _UniversityAnalyzeSearchScreen
       trailing:
           Icon(Icons.keyboard_arrow_right, color: Colors.black54, size: 25.0),
       onTap: () => _analysisController.routeToUniversity(
-          '/analysis/university/view', university),
+          '/analysis/university', university),
     );
   }
 }

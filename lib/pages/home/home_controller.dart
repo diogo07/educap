@@ -1,8 +1,6 @@
-import 'dart:async';
-
 import 'package:educap/app/app_controller.dart';
 import 'package:educap/pages/login/login_controller.dart';
-import 'package:educap/utils/constants.dart';
+import 'package:educap/helpers/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import "package:mobx/mobx.dart";

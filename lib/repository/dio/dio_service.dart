@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:educap/utils/constants.dart';
+import 'package:educap/helpers/constants.dart';
 import 'dio_interceptors.dart';
 
 class DioService {

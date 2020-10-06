@@ -3,7 +3,7 @@ import 'package:educap/models/enade.dart';
 import 'package:educap/repository/dio/dio_service.dart';
 import 'package:educap/repository/enade_repository.dart';
 import 'package:educap/repository/university_repository.dart';
-import 'package:educap/utils/constants.dart';
+import 'package:educap/helpers/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import "package:mobx/mobx.dart";

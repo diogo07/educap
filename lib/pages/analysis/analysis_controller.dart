@@ -1,7 +1,7 @@
 import 'package:educap/models/university.dart';
 import 'package:educap/repository/dio/dio_service.dart';
 import 'package:educap/repository/university_repository.dart';
-import 'package:educap/utils/constants.dart';
+import 'package:educap/helpers/constants.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import "package:mobx/mobx.dart";
 part "analysis_controller.g.dart";
@@ -27,6 +27,11 @@ abstract class _AnalysisController with Store {
 
   void routeToUniversity(String route, University university) {
     Constants.university = university;
+    this.showPage(route);
+  }
+
+  void routeToQuestions(String route, int year) {
+    Constants.yearAnalyze = year;
     this.showPage(route);
   }
 
