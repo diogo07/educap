@@ -1,4 +1,5 @@
 import 'package:educap/components/charts/column_chart.dart';
+import 'package:educap/components/charts/grouped_chart.dart';
 import 'package:educap/models/course.dart';
 import 'package:educap/pages/analisy_enade/analyze_enade_controller.dart';
 import 'package:educap/helpers/constants.dart';
@@ -15,8 +16,10 @@ class _AnalyzeEnadeScreen extends State<AnalyzeEnadeScreen> {
 
   @override
   void initState() {
+    this._analyzeEnadeController.courseSelected = Course.lazy(0, "0", 0, 0);
     this._analyzeEnadeController.searchDataEnadeFromUniversity();
     this._analyzeEnadeController.searchCoursesFromUniversity();
+    this._analyzeEnadeController.searchCustomAnswers();
   }
 
   @override
@@ -54,7 +57,7 @@ class _AnalyzeEnadeScreen extends State<AnalyzeEnadeScreen> {
                     ),
                     Observer(
                         builder: (_) => _analyzeEnadeController
-                                    .loadingDataEnade ||
+                                    .loadingCustomAnswers ||
                                 _analyzeEnadeController.loadingCourses
                             ? Expanded(
                                 child: Center(
@@ -70,16 +73,16 @@ class _AnalyzeEnadeScreen extends State<AnalyzeEnadeScreen> {
                                 children: [
                                   Padding(
                                     padding:
-                                        EdgeInsets.only(top: 20, bottom: 20),
+                                        EdgeInsets.only(top: 20, bottom: 10),
                                     child: Text(
-                                      'Quantidade de alunos que realizaram o Enade por ano',
+                                      'Quantidade de alunos que realizaram o Enade',
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                           color: Colors.black45, fontSize: 14),
                                     ),
                                   ),
-                                  Padding(
-                                    padding: EdgeInsets.only(right: 20),
+                                  Container(
+                                    width: MediaQuery.of(context).size.width,
                                     child: Row(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.end,
@@ -89,8 +92,8 @@ class _AnalyzeEnadeScreen extends State<AnalyzeEnadeScreen> {
                                           value: _analyzeEnadeController
                                               .courseSelected,
                                           icon: Icon(Icons.arrow_drop_down),
-                                          iconSize: 24,
-                                          elevation: 16,
+                                          iconSize: 18,
+                                          elevation: 6,
                                           style:
                                               TextStyle(color: Colors.black45),
                                           underline: Container(
@@ -98,8 +101,6 @@ class _AnalyzeEnadeScreen extends State<AnalyzeEnadeScreen> {
                                               color: Colors.transparent),
                                           onChanged: (Course course) {
                                             setState(() {
-                                              // _analyzeEnadeController
-                                              //     .courseSelected = course;
                                               _analyzeEnadeController
                                                   .setCourseSelected(course);
                                             });
@@ -112,66 +113,22 @@ class _AnalyzeEnadeScreen extends State<AnalyzeEnadeScreen> {
                                   ),
                                   Container(
                                     width: MediaQuery.of(context).size.width,
-                                    height: 400,
+                                    height: 300,
                                     child: ColumnChart(
                                         _analyzeEnadeController.listEnades),
                                   )
                                 ],
-                              ))
+                              )),
                   ]),
-                )
+                ),
+                // Container(
+                //   width: MediaQuery.of(context).size.width,
+                //   height: 300,
+                //   child: _analyzeEnadeController.loadingCustomAnswers
+                //       ? Container()
+                //       : GroupedChart(_analyzeEnadeController.listCustomAnswers),
+                // )
               ]),
             )));
-  }
-}
-
-class Entry {
-  const Entry(this.title, [this.children = const <Entry>[]]);
-  final String title;
-  final List<Entry> children;
-}
-
-// Data to display.
-const List<Entry> data = <Entry>[
-  Entry(
-    'Chapter A',
-    <Entry>[
-      Entry(
-        'Section A0',
-        <Entry>[
-          Entry('Item A0.1'),
-          Entry('Item A0.2'),
-        ],
-      ),
-      Entry('Section A1'),
-      Entry('Section A2'),
-    ],
-  ),
-  Entry(
-    'Chapter B',
-    <Entry>[
-      Entry('Section B0'),
-      Entry('Section B1'),
-    ],
-  ),
-];
-
-class EntryItem extends StatelessWidget {
-  const EntryItem(this.entry);
-
-  final Entry entry;
-
-  Widget _buildTiles(Entry root) {
-    if (root.children.isEmpty) return ListTile(title: Text(root.title));
-    return ExpansionTile(
-      key: PageStorageKey<Entry>(root),
-      title: Text(root.title),
-      children: root.children.map(_buildTiles).toList(),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return _buildTiles(entry);
   }
 }

@@ -1,6 +1,7 @@
 import 'package:educap/components/charts/pie_chart.dart';
 import 'package:educap/helpers/constants.dart';
 import 'package:educap/models/question.dart';
+import 'package:educap/pages/analisy_enade/analyze_enade_controller.dart';
 import 'package:educap/pages/answer/answer_controller.dart';
 import 'package:educap/pages/questions/questions_controller.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +14,7 @@ class QuestionsEnadeScreen extends StatefulWidget {
 
 class _QuestionsEnadeScreen extends State<QuestionsEnadeScreen> {
   final _questionsController = Modular.get<QuestionsController>();
+  final _analyzeEnadeController = Modular.get<AnalyzeEnadeController>();
 
   @override
   void initState() {
@@ -39,12 +41,19 @@ class _QuestionsEnadeScreen extends State<QuestionsEnadeScreen> {
             child: Padding(
               padding: EdgeInsets.all(20),
               child: ListView(shrinkWrap: true, children: <Widget>[
-                Text(
-                  'ENADE DE ${Constants.yearAnalyze} DA ${Constants.university.name}',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: Colors.black54, fontWeight: FontWeight.bold),
-                ),
+                _analyzeEnadeController.courseSelected.id != 0
+                    ? Text(
+                        'ENADE DE ${Constants.yearAnalyze} DO CURSO DE ${Constants.getCourseByGroup(_analyzeEnadeController.courseSelected.group)} DA ${Constants.university.name}',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Colors.black54, fontWeight: FontWeight.bold),
+                      )
+                    : Text(
+                        'ENADE DE ${Constants.yearAnalyze} DA ${Constants.university.name}',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Colors.black54, fontWeight: FontWeight.bold),
+                      ),
                 Observer(
                     builder: (_) => _questionsController.loadingSearchQuestions
                         ? Expanded(
@@ -75,7 +84,7 @@ class _QuestionsEnadeScreen extends State<QuestionsEnadeScreen> {
   _buildQuestion(Question question) {
     return ExpansionTile(
       key: PageStorageKey<Question>(question),
-      title: Text("${question.id} - ${question.description}",
+      title: Text("${question.description}",
           textAlign: TextAlign.center,
           style: TextStyle(
             color: Colors.black54,

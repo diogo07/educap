@@ -37,14 +37,6 @@ class HomeScreen extends StatelessWidget {
                   _homeController.showPage('/profile');
                 }),
             ListTile(
-                title: Text('Configurações',
-                    style: TextStyle(
-                        color: Colors.black45, fontWeight: FontWeight.normal)),
-                leading: Icon(Icons.settings, color: Colors.black38),
-                onTap: () {
-                  _homeController.showPage('/settings');
-                }),
-            ListTile(
               title: Text('Sair',
                   style: TextStyle(
                       color: Colors.black45, fontWeight: FontWeight.normal)),

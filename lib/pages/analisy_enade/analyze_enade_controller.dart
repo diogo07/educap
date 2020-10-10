@@ -1,5 +1,7 @@
 import 'package:educap/models/course.dart';
+import 'package:educap/models/custom_answer.dart';
 import 'package:educap/models/enade.dart';
+import 'package:educap/repository/answer_repository.dart';
 import 'package:educap/repository/dio/dio_service.dart';
 import 'package:educap/repository/enade_repository.dart';
 import 'package:educap/repository/university_repository.dart';
@@ -16,6 +18,9 @@ abstract class _AnalyzeEnadeController with Store {
   EnadeRepository enadeRepository = EnadeRepository(Modular.get<DioService>());
   UniversityRepository universityRepository =
       UniversityRepository(Modular.get<DioService>());
+
+  AnswerRepository answerRepository =
+      AnswerRepository(Modular.get<DioService>());
   Course courseSelected = Course.lazy(0, "0", 0, 0);
 
   @observable
@@ -25,10 +30,16 @@ abstract class _AnalyzeEnadeController with Store {
   List<Course> listCourses = List<Course>();
 
   @observable
+  List<CustomAnswer> listCustomAnswers = List<CustomAnswer>();
+
+  @observable
   bool loadingDataEnade = true;
 
   @observable
   bool loadingCourses = true;
+
+  @observable
+  bool loadingCustomAnswers = true;
 
   void showPage(String route) {
     Modular.to.pushReplacementNamed(route);
@@ -40,7 +51,18 @@ abstract class _AnalyzeEnadeController with Store {
     try {
       this.listEnades =
           await enadeRepository.filterByUniversity(Constants.university);
+      await answerRepository.listByGroupPerceptionOfProof();
       this.loadingDataEnade = false;
+    } on Exception catch (error) {}
+  }
+
+  @action
+  searchCustomAnswers() async {
+    this.loadingCustomAnswers = true;
+    try {
+      this.listCustomAnswers =
+          await answerRepository.listByGroupPerceptionOfProof();
+      this.loadingCustomAnswers = false;
     } on Exception catch (error) {}
   }
 

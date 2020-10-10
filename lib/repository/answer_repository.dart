@@ -1,5 +1,6 @@
 import 'package:educap/helpers/constants.dart';
 import 'package:educap/models/answer.dart';
+import 'package:educap/models/custom_answer.dart';
 import 'package:educap/models/question.dart';
 import 'package:educap/repository/dio/dio_service.dart';
 
@@ -23,8 +24,17 @@ class AnswerRepository {
     if (response.statusCode != 200) {
       throw Exception();
     } else {
-      print(response.data);
       return Answer.toList(response.data);
+    }
+  }
+
+  Future<List<CustomAnswer>> listByGroupPerceptionOfProof() async {
+    var response = await _dio.service.get(
+        "resposta/universidade/${Constants.university.id}/percepcaodaprova");
+    if (response.statusCode != 200) {
+      throw Exception();
+    } else {
+      return CustomAnswer.toList(response.data);
     }
   }
 }

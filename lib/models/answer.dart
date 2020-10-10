@@ -1,3 +1,4 @@
+import 'package:educap/helpers/constants.dart';
 import 'package:flutter/material.dart';
 
 class Answer {
@@ -9,9 +10,17 @@ class Answer {
 
   factory Answer.fromMap(Map json) {
     return Answer(
-      json['opcao'],
+      limitLenghtText(Constants.getDescriptionQuestion(
+          json['codigo_questao'], json['opcao'])),
       json['total'],
     );
+  }
+
+  static String limitLenghtText(String text) {
+    if (text.length > 15) {
+      text = text.substring(0, 14) + "...";
+    }
+    return text;
   }
 
   static List<Answer> toList(List list) {

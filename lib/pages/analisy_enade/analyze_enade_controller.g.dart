@@ -39,6 +39,22 @@ mixin _$AnalyzeEnadeController on _AnalyzeEnadeController, Store {
     });
   }
 
+  final _$listCustomAnswersAtom =
+      Atom(name: '_AnalyzeEnadeController.listCustomAnswers');
+
+  @override
+  List<CustomAnswer> get listCustomAnswers {
+    _$listCustomAnswersAtom.reportRead();
+    return super.listCustomAnswers;
+  }
+
+  @override
+  set listCustomAnswers(List<CustomAnswer> value) {
+    _$listCustomAnswersAtom.reportWrite(value, super.listCustomAnswers, () {
+      super.listCustomAnswers = value;
+    });
+  }
+
   final _$loadingDataEnadeAtom =
       Atom(name: '_AnalyzeEnadeController.loadingDataEnade');
 
@@ -71,6 +87,23 @@ mixin _$AnalyzeEnadeController on _AnalyzeEnadeController, Store {
     });
   }
 
+  final _$loadingCustomAnswersAtom =
+      Atom(name: '_AnalyzeEnadeController.loadingCustomAnswers');
+
+  @override
+  bool get loadingCustomAnswers {
+    _$loadingCustomAnswersAtom.reportRead();
+    return super.loadingCustomAnswers;
+  }
+
+  @override
+  set loadingCustomAnswers(bool value) {
+    _$loadingCustomAnswersAtom.reportWrite(value, super.loadingCustomAnswers,
+        () {
+      super.loadingCustomAnswers = value;
+    });
+  }
+
   final _$searchDataEnadeFromUniversityAsyncAction =
       AsyncAction('_AnalyzeEnadeController.searchDataEnadeFromUniversity');
 
@@ -78,6 +111,15 @@ mixin _$AnalyzeEnadeController on _AnalyzeEnadeController, Store {
   Future searchDataEnadeFromUniversity() {
     return _$searchDataEnadeFromUniversityAsyncAction
         .run(() => super.searchDataEnadeFromUniversity());
+  }
+
+  final _$searchCustomAnswersAsyncAction =
+      AsyncAction('_AnalyzeEnadeController.searchCustomAnswers');
+
+  @override
+  Future searchCustomAnswers() {
+    return _$searchCustomAnswersAsyncAction
+        .run(() => super.searchCustomAnswers());
   }
 
   final _$setCourseSelectedAsyncAction =
@@ -103,8 +145,10 @@ mixin _$AnalyzeEnadeController on _AnalyzeEnadeController, Store {
     return '''
 listEnades: ${listEnades},
 listCourses: ${listCourses},
+listCustomAnswers: ${listCustomAnswers},
 loadingDataEnade: ${loadingDataEnade},
-loadingCourses: ${loadingCourses}
+loadingCourses: ${loadingCourses},
+loadingCustomAnswers: ${loadingCustomAnswers}
     ''';
   }
 }

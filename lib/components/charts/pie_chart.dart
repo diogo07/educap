@@ -25,10 +25,11 @@ class PieChart extends StatelessWidget {
               fontSize: 12, color: charts.MaterialPalette.black),
           cellPadding: new EdgeInsets.only(right: 4.0, bottom: 4.0),
           showMeasures: true,
-          legendDefaultMeasure: charts.LegendDefaultMeasure.firstValue,
-          // measureFormatter: (num value) {
-          //   return value == null ? '-' : ' - $value';
-          // },
+          legendDefaultMeasure: charts.LegendDefaultMeasure.average,
+          measureFormatter: (num value) {
+            // return value == null ? '-' : '- $value';
+            return "";
+          },
         ),
       ],
     );

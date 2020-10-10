@@ -1,12 +1,14 @@
 import 'package:educap/app/app_controller.dart';
+import 'package:educap/pages/about/about_screen.dart';
 import 'package:educap/pages/analisy_enade/analyze_enade_controller.dart';
 import 'package:educap/pages/analisy_enade/analyze_enade_screen.dart';
 import 'package:educap/pages/analysis/analysis_controller.dart';
-import 'package:educap/pages/analysis/analysis_screen.dart';
 import 'package:educap/pages/home/home_controller.dart';
 import 'package:educap/pages/home/home_screen.dart';
 import 'package:educap/pages/login/login_controller.dart';
 import 'package:educap/pages/login/login_screen.dart';
+import 'package:educap/pages/profile/profile_controller.dart';
+import 'package:educap/pages/profile/profile_screen.dart';
 import 'package:educap/pages/questions/questions_controller.dart';
 import 'package:educap/pages/questions/questions_screen.dart';
 import 'package:educap/pages/register/register_controller.dart';
@@ -26,6 +28,7 @@ class AppModule extends MainModule {
         Bind((i) => HomeController()),
         Bind((i) => LoginController()),
         Bind((i) => RegisterController()),
+        Bind((i) => ProfileController()),
         Bind((i) => AnalysisController()),
         Bind((i) => AnalyzeEnadeController()),
         Bind((i) => QuestionsController()),
@@ -38,6 +41,8 @@ class AppModule extends MainModule {
         Router("/login", child: (_, args) => LoginScreen()),
         Router("/register", child: (_, args) => RegisterScreen()),
         Router("/home", child: (_, args) => HomeScreen()),
+        Router("/about", child: (_, args) => AboutScreen()),
+        Router("/profile", child: (_, args) => ProfileScreen()),
         Router("/analysis",
             child: (_, args) => UniversityAnalyzeSearchScreen()),
         Router("/analysis/university",
