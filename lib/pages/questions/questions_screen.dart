@@ -27,7 +27,7 @@ class _QuestionsEnadeScreen extends State<QuestionsEnadeScreen> {
         appBar: AppBar(
           title: Text(
             'Questões',
-            style: TextStyle(color: Colors.white, fontSize: 16.0),
+            style: TextStyle(color: Colors.white, fontSize: 18.0),
           ),
           leading: IconButton(
             icon: Icon(Icons.arrow_back, color: Colors.white),
@@ -46,13 +46,17 @@ class _QuestionsEnadeScreen extends State<QuestionsEnadeScreen> {
                         'ENADE DE ${Constants.yearAnalyze} DO CURSO DE ${Constants.getCourseByGroup(_analyzeEnadeController.courseSelected.group)} DA ${Constants.university.name}',
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            color: Colors.black54, fontWeight: FontWeight.bold),
+                            color: Colors.black54,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16),
                       )
                     : Text(
                         'ENADE DE ${Constants.yearAnalyze} DA ${Constants.university.name}',
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            color: Colors.black54, fontWeight: FontWeight.bold),
+                            color: Colors.black54,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16),
                       ),
                 Observer(
                     builder: (_) => _questionsController.loadingSearchQuestions
@@ -88,14 +92,10 @@ class _QuestionsEnadeScreen extends State<QuestionsEnadeScreen> {
           textAlign: TextAlign.center,
           style: TextStyle(
             color: Colors.black54,
+            fontSize: 16,
           )),
       children: [_buildChartAnswer(question)],
     );
-  }
-
-  _buildChart(Question question) {
-    this._questionsController.searchDataAnswersByQuestion(question);
-    return Text("Gráfico");
   }
 
   _buildChartAnswer(Question question) {

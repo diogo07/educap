@@ -21,7 +21,7 @@ class _ProfileScreen extends State<ProfileScreen> {
       appBar: AppBar(
         title: Text(
           'Perfil',
-          style: TextStyle(color: Colors.white, fontSize: 16.0),
+          style: TextStyle(color: Colors.white, fontSize: 18.0),
         ),
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.white),
@@ -39,7 +39,9 @@ class _ProfileScreen extends State<ProfileScreen> {
                 child: Text('ALTERAR INFORMAÇÕES',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                        color: Colors.black54, fontWeight: FontWeight.bold)),
+                        color: Colors.black54,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18)),
               ),
               ProfileForm(_scaffoldKey),
             ],

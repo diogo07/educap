@@ -14,7 +14,9 @@ class _UniversityAnalyzeSearchScreen
   final _analysisController = Modular.get<AnalysisController>();
 
   @override
-  void initState() {}
+  void initState() {
+    this._analysisController.listUniversities = List<University>();
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -52,8 +52,101 @@ class GroupedChart extends StatelessWidget {
 }
 
 class GroupedBarChart extends StatelessWidget {
-  final List<charts.Series> seriesList = _createSampleData();
-  final bool animate = true;
+  List<charts.Series> seriesList;
+  bool animate = true;
+
+  GroupedBarChart(List<CustomAnswer> list) {
+    this.seriesList = createListOrdinalSales(list);
+  }
+
+  createOrdinalSales(CustomAnswer item) {
+    var listSales = [];
+    item.data.forEach((element) {
+      listSales.add(OrdinalSales(item.year.toString(), element.amount));
+    });
+
+    return listSales;
+  }
+
+  createListOrdinalSales(List<CustomAnswer> list) {
+    var ordinalSales1 = createOrdinalSales(list[0]);
+    final salesData1 = [
+      ordinalSales1[0],
+      ordinalSales1[1],
+      ordinalSales1[2],
+      ordinalSales1[3],
+      ordinalSales1[4],
+    ];
+
+    var ordinalSales2 = createOrdinalSales(list[1]);
+    final salesData2 = [
+      ordinalSales2[0],
+      ordinalSales2[1],
+      ordinalSales2[2],
+      ordinalSales2[3],
+      ordinalSales2[4],
+    ];
+
+    var ordinalSales3 = createOrdinalSales(list[2]);
+    final salesData3 = [
+      ordinalSales3[0],
+      ordinalSales3[1],
+      ordinalSales3[2],
+      ordinalSales3[3],
+      ordinalSales3[4],
+    ];
+
+    var ordinalSales4 = createOrdinalSales(list[3]);
+    final salesData4 = [
+      ordinalSales4[0],
+      ordinalSales4[1],
+      ordinalSales4[2],
+      ordinalSales4[3],
+      ordinalSales4[4],
+    ];
+
+    var ordinalSales5 = createOrdinalSales(list[4]);
+    final salesData5 = [
+      ordinalSales5[0],
+      ordinalSales5[1],
+      ordinalSales5[2],
+      ordinalSales5[3],
+      ordinalSales5[4],
+    ];
+
+    return [
+      new charts.Series<OrdinalSales, String>(
+        id: '2014',
+        domainFn: (OrdinalSales sales, _) => sales.year,
+        measureFn: (OrdinalSales sales, _) => sales.sales,
+        data: salesData1,
+      ),
+      new charts.Series<OrdinalSales, String>(
+        id: '2015',
+        domainFn: (OrdinalSales sales, _) => sales.year,
+        measureFn: (OrdinalSales sales, _) => sales.sales,
+        data: salesData2,
+      ),
+      new charts.Series<OrdinalSales, String>(
+        id: '2016',
+        domainFn: (OrdinalSales sales, _) => sales.year,
+        measureFn: (OrdinalSales sales, _) => sales.sales,
+        data: salesData3,
+      ),
+      new charts.Series<OrdinalSales, String>(
+        id: '2017',
+        domainFn: (OrdinalSales sales, _) => sales.year,
+        measureFn: (OrdinalSales sales, _) => sales.sales,
+        data: salesData4,
+      ),
+      new charts.Series<OrdinalSales, String>(
+        id: '2018',
+        domainFn: (OrdinalSales sales, _) => sales.year,
+        measureFn: (OrdinalSales sales, _) => sales.sales,
+        data: salesData5,
+      ),
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {

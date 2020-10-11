@@ -44,13 +44,6 @@ class _SplashScreen extends State<SplashScreen> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
-                            // Text(
-                            //   'educap',
-                            //   style: TextStyle(
-                            //       color: Colors.white,
-                            //       fontFamily: 'Assistant Bold',
-                            //       fontSize: 40.0),
-                            // )
                             SizedBox(
                               width: MediaQuery.of(context).size.width,
                               child: TextLiquidFill(
@@ -60,7 +53,7 @@ class _SplashScreen extends State<SplashScreen> {
                                 textStyle: TextStyle(
                                     color: Colors.white,
                                     fontFamily: 'Assistant Bold',
-                                    fontSize: 40.0),
+                                    fontSize: 60.0),
                               ),
                             ),
                           ],

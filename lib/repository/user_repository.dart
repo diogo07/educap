@@ -14,7 +14,6 @@ class UserRepository {
       throw Exception();
     } else {
       Constants.USER_TOKEN = response.data['token'];
-      print(response.data);
       return User.fromMapAuthenticate(response.data);
     }
   }
@@ -43,7 +42,7 @@ class UserRepository {
     var response = await _dioService.service.put(
         "${Constants.API_URL}usuario/update/${user.id}",
         data: user.toJson());
-    if (response.statusCode != 201) {
+    if (response.statusCode != 200) {
       throw Exception();
     } else {
       return User.fromMap(response.data);

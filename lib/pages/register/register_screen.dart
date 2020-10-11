@@ -14,7 +14,7 @@ class RegisterScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           'Cadastro',
-          style: TextStyle(color: Colors.white, fontSize: 16.0),
+          style: TextStyle(color: Colors.white, fontSize: 18.0),
         ),
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.white),

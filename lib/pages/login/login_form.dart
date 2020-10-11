@@ -62,7 +62,7 @@ class _LoginFormState extends State<LoginForm> {
                 width: MediaQuery.of(context).size.width * 0.9,
                 padding: EdgeInsets.only(),
                 child: TextFormField(
-                  style: TextStyle(color: Colors.black38),
+                  style: TextStyle(color: Colors.black38, fontSize: 16),
                   onChanged: _loginController.setUsername,
                   validator: (value) {
                     if (value.isEmpty) {
@@ -77,7 +77,7 @@ class _LoginFormState extends State<LoginForm> {
                 width: MediaQuery.of(context).size.width * 0.9,
                 padding: EdgeInsets.only(top: 8.0),
                 child: TextFormField(
-                  style: TextStyle(color: Colors.black38),
+                  style: TextStyle(color: Colors.black38, fontSize: 16),
                   onChanged: _loginController.setPassword,
                   validator: (value) {
                     if (value.isEmpty) {
@@ -95,7 +95,8 @@ class _LoginFormState extends State<LoginForm> {
                         margin: EdgeInsets.only(top: 20),
                         alignment: Alignment.center,
                         child: Text('Login ou senha inválida',
-                            style: TextStyle(color: Colors.redAccent)),
+                            style: TextStyle(
+                                color: Colors.redAccent, fontSize: 16)),
                       )
                     : Container(),
               ),
@@ -107,9 +108,7 @@ class _LoginFormState extends State<LoginForm> {
                   child: Text(
                     "ENTRAR",
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
+                    style: TextStyle(color: Colors.white, fontSize: 16),
                   ),
                   color: Colors.red[400],
                   onPressed: _loginController.validateLogin,

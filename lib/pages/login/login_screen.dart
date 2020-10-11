@@ -26,7 +26,7 @@ class LoginScreen extends StatelessWidget {
                       style: TextStyle(
                           color: Colors.indigo,
                           fontFamily: 'Assistant Bold',
-                          fontSize: 40.0),
+                          fontSize: 60.0),
                     ),
                   )),
               LoginForm(_scaffoldKey),

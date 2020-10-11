@@ -19,7 +19,7 @@ class _AnalyzeEnadeScreen extends State<AnalyzeEnadeScreen> {
     this._analyzeEnadeController.courseSelected = Course.lazy(0, "0", 0, 0);
     this._analyzeEnadeController.searchDataEnadeFromUniversity();
     this._analyzeEnadeController.searchCoursesFromUniversity();
-    this._analyzeEnadeController.searchCustomAnswers();
+    // this._analyzeEnadeController.searchCustomAnswers();
   }
 
   @override
@@ -28,7 +28,7 @@ class _AnalyzeEnadeScreen extends State<AnalyzeEnadeScreen> {
         appBar: AppBar(
           title: Text(
             'Análise',
-            style: TextStyle(color: Colors.white, fontSize: 16.0),
+            style: TextStyle(color: Colors.white, fontSize: 18.0),
           ),
           leading: IconButton(
             icon: Icon(Icons.arrow_back, color: Colors.white),
@@ -57,7 +57,7 @@ class _AnalyzeEnadeScreen extends State<AnalyzeEnadeScreen> {
                     ),
                     Observer(
                         builder: (_) => _analyzeEnadeController
-                                    .loadingCustomAnswers ||
+                                    .loadingDataEnade ||
                                 _analyzeEnadeController.loadingCourses
                             ? Expanded(
                                 child: Center(
@@ -78,7 +78,7 @@ class _AnalyzeEnadeScreen extends State<AnalyzeEnadeScreen> {
                                       'Quantidade de alunos que realizaram o Enade',
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
-                                          color: Colors.black45, fontSize: 14),
+                                          color: Colors.black45, fontSize: 16),
                                     ),
                                   ),
                                   Container(
@@ -113,7 +113,7 @@ class _AnalyzeEnadeScreen extends State<AnalyzeEnadeScreen> {
                                   ),
                                   Container(
                                     width: MediaQuery.of(context).size.width,
-                                    height: 300,
+                                    height: 400,
                                     child: ColumnChart(
                                         _analyzeEnadeController.listEnades),
                                   )
@@ -122,12 +122,23 @@ class _AnalyzeEnadeScreen extends State<AnalyzeEnadeScreen> {
                   ]),
                 ),
                 // Container(
-                //   width: MediaQuery.of(context).size.width,
-                //   height: 300,
-                //   child: _analyzeEnadeController.loadingCustomAnswers
-                //       ? Container()
-                //       : GroupedChart(_analyzeEnadeController.listCustomAnswers),
-                // )
+                //     width: MediaQuery.of(context).size.width,
+                //     height: 400,
+                //     child: Observer(
+                //       builder: (_) => _analyzeEnadeController
+                //               .loadingCustomAnswers
+                //           ? Expanded(
+                //               child: Center(
+                //                 child: CircularProgressIndicator(
+                //                   backgroundColor: Colors.black12,
+                //                   valueColor: new AlwaysStoppedAnimation<Color>(
+                //                       Colors.indigo),
+                //                 ),
+                //               ),
+                //             )
+                //           : GroupedBarChart(
+                //               _analyzeEnadeController.listCustomAnswers),
+                //     ))
               ]),
             )));
   }

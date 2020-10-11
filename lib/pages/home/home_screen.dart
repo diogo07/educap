@@ -32,14 +32,18 @@ class HomeScreen extends StatelessWidget {
                 ),
                 title: Text('Perfil',
                     style: TextStyle(
-                        color: Colors.black45, fontWeight: FontWeight.normal)),
+                        color: Colors.black45,
+                        fontWeight: FontWeight.normal,
+                        fontSize: 16)),
                 onTap: () {
                   _homeController.showPage('/profile');
                 }),
             ListTile(
               title: Text('Sair',
                   style: TextStyle(
-                      color: Colors.black45, fontWeight: FontWeight.normal)),
+                      color: Colors.black45,
+                      fontWeight: FontWeight.normal,
+                      fontSize: 16)),
               leading: Icon(Icons.exit_to_app, color: Colors.black38),
               onTap: () => _homeController.logout(),
             )
@@ -96,7 +100,7 @@ class HomeScreen extends StatelessWidget {
                   height: 50,
                   child: Text(
                     title,
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(color: Colors.white, fontSize: 16),
                   ),
                 ),
               ],

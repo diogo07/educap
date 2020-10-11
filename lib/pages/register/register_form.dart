@@ -1,4 +1,3 @@
-import 'package:educap/pages/login/login_controller.dart';
 import 'package:educap/pages/register/register_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -94,7 +93,7 @@ class _RegisterForm extends State<RegisterForm> {
                   width: MediaQuery.of(context).size.width * 0.9,
                   padding: EdgeInsets.only(top: 8.0),
                   child: TextFormField(
-                    style: TextStyle(color: Colors.black38),
+                    style: TextStyle(color: Colors.black38, fontSize: 16),
                     onChanged: _registerController.setUsername,
                     validator: (value) {
                       if (value.isEmpty || !_registerController.usernameValid) {
@@ -110,7 +109,7 @@ class _RegisterForm extends State<RegisterForm> {
                 width: MediaQuery.of(context).size.width * 0.9,
                 padding: EdgeInsets.only(top: 8.0),
                 child: TextFormField(
-                  style: TextStyle(color: Colors.black38),
+                  style: TextStyle(color: Colors.black38, fontSize: 16),
                   onChanged: _registerController.setPassword,
                   validator: (value) {
                     if (value.isEmpty) {
@@ -128,7 +127,8 @@ class _RegisterForm extends State<RegisterForm> {
                         margin: EdgeInsets.only(top: 20),
                         alignment: Alignment.center,
                         child: Text('Login ou senha inválida',
-                            style: TextStyle(color: Colors.redAccent)),
+                            style: TextStyle(
+                                color: Colors.redAccent, fontSize: 16)),
                       )
                     : Container(),
               ),
@@ -140,9 +140,7 @@ class _RegisterForm extends State<RegisterForm> {
                   child: Text(
                     "CADASTRAR",
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
+                    style: TextStyle(color: Colors.white, fontSize: 16),
                   ),
                   color: Colors.red[400],
                   onPressed: () => _registerController.saveUser(context),

@@ -1,6 +1,6 @@
 import 'package:educap/app/app_controller.dart';
 import 'package:educap/models/user.dart';
-import 'package:educap/repository/dio/dio_service.dart';
+import 'package:toast/toast.dart';
 import 'package:educap/repository/user_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -89,10 +89,14 @@ abstract class _ProfileController with Store {
             this.firstName, this.lastName, this.username, this.password);
         user.id = this.appController.getUser().id;
         user = await userRepository.update(user);
-        this.appController.setUser(user);
+        this.appController.getUser().first_name = user.first_name;
+        this.appController.getUser().last_name = user.last_name;
+        this.appController.getUser().username = user.username;
         this.progressDialog.hide();
+        this.showMessage("Dados atualizados com sucesso!", context);
       } on Exception catch (error) {
         print(error.toString());
+        this.showMessage("Erro ao atualizar as informações!", context);
       }
     }
   }
@@ -124,5 +128,17 @@ abstract class _ProfileController with Store {
     }
 
     progressDialog.show();
+  }
+
+  setDefaultDataUser() {
+    this.username = this.appController.getUser().username;
+    this.firstName = this.appController.getUser().first_name;
+    this.lastName = this.appController.getUser().last_name;
+    this.password = this.appController.getUser().password;
+  }
+
+  showMessage(String text, BuildContext context) {
+    Toast.show(text, context,
+        duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
   }
 }

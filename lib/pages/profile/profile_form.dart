@@ -19,6 +19,7 @@ class _ProfileForm extends State<ProfileForm> {
 
   @override
   void initState() {
+    this._profileController.setDefaultDataUser();
     super.initState();
   }
 
@@ -44,7 +45,8 @@ class _ProfileForm extends State<ProfileForm> {
                               margin: EdgeInsets.only(bottom: 10.0),
                               child: Text(
                                 'Aguarde',
-                                style: TextStyle(color: Colors.black26),
+                                style: TextStyle(
+                                    color: Colors.black26, fontSize: 16),
                               )),
                           Container(
                             margin: EdgeInsets.only(bottom: 40.0),
@@ -62,7 +64,7 @@ class _ProfileForm extends State<ProfileForm> {
                 width: MediaQuery.of(context).size.width * 0.9,
                 padding: EdgeInsets.only(top: 8.0),
                 child: TextFormField(
-                  style: TextStyle(color: Colors.black38),
+                  style: TextStyle(color: Colors.black38, fontSize: 16),
                   initialValue:
                       _profileController.appController.getUser().first_name,
                   onChanged: _profileController.setFirstName,
@@ -79,7 +81,7 @@ class _ProfileForm extends State<ProfileForm> {
                 width: MediaQuery.of(context).size.width * 0.9,
                 padding: EdgeInsets.only(top: 8.0),
                 child: TextFormField(
-                  style: TextStyle(color: Colors.black38),
+                  style: TextStyle(color: Colors.black38, fontSize: 16),
                   initialValue:
                       _profileController.appController.getUser().last_name,
                   onChanged: _profileController.setLastName,
@@ -97,7 +99,7 @@ class _ProfileForm extends State<ProfileForm> {
                   width: MediaQuery.of(context).size.width * 0.9,
                   padding: EdgeInsets.only(top: 8.0),
                   child: TextFormField(
-                    style: TextStyle(color: Colors.black38),
+                    style: TextStyle(color: Colors.black38, fontSize: 16),
                     onChanged: _profileController.setUsername,
                     initialValue:
                         _profileController.appController.getUser().username,
@@ -115,7 +117,7 @@ class _ProfileForm extends State<ProfileForm> {
                 width: MediaQuery.of(context).size.width * 0.9,
                 padding: EdgeInsets.only(top: 8.0),
                 child: TextFormField(
-                  style: TextStyle(color: Colors.black38),
+                  style: TextStyle(color: Colors.black38, fontSize: 16),
                   onChanged: _profileController.setPassword,
                   validator: (value) {
                     if (value.isEmpty) {
@@ -147,6 +149,7 @@ class _ProfileForm extends State<ProfileForm> {
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.white,
+                      fontSize: 16,
                     ),
                   ),
                   color: Colors.red[400],
