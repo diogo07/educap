@@ -1,3 +1,4 @@
+import 'package:educap/helpers/data_chart_helper.dart';
 import 'package:educap/models/course.dart';
 import 'package:educap/models/custom_answer.dart';
 import 'package:educap/models/enade.dart';
@@ -7,6 +8,7 @@ import 'package:educap/repository/enade_repository.dart';
 import 'package:educap/repository/university_repository.dart';
 import 'package:educap/helpers/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter_modular/flutter_modular.dart';
 import "package:mobx/mobx.dart";
 part 'analyze_enade_controller.g.dart';
@@ -22,6 +24,8 @@ abstract class _AnalyzeEnadeController with Store {
   AnswerRepository answerRepository =
       AnswerRepository(Modular.get<DioService>());
   Course courseSelected = Course.lazy(0, "0", 0, 0);
+
+  List<charts.Series> seriesList;
 
   @observable
   List<Enade> listEnades = List<Enade>();
@@ -62,6 +66,8 @@ abstract class _AnalyzeEnadeController with Store {
     try {
       this.listCustomAnswers =
           await answerRepository.listByGroupPerceptionOfProof();
+      this.seriesList =
+          DataLineChartFormat(this.listCustomAnswers).createSeries();
       this.loadingCustomAnswers = false;
     } on Exception catch (error) {}
   }

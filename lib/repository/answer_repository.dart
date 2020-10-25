@@ -34,6 +34,7 @@ class AnswerRepository {
     if (response.statusCode != 200) {
       throw Exception();
     } else {
+      //print(response.data);
       return CustomAnswer.toList(response.data);
     }
   }
