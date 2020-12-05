@@ -2,7 +2,7 @@ import 'package:educap/models/university.dart';
 import 'package:flutter/material.dart';
 
 class Constants {
-  static String API_URL = 'http://157.230.48.95/api/';
+  static String API_URL = 'http://0.0.0.0/api/';
   static String USER_TOKEN = null;
   static University university = null;
   static int yearAnalyze = null;
